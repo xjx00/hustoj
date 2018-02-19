@@ -2,14 +2,14 @@ FROM ubuntu:trusty-20171117
 
 #COPY ./docker/hustoj/sources.list /etc/apt/sources.list
 	
-RUN apt-get update && apt-get upgrade && apt-get install -y make flex g++ clang libmysqlclient-dev libmysql++-dev php5-fpm php5-memcache memcached nginx php5-mysql php5-gd \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y make flex g++ clang libmysqlclient-dev libmysql++-dev php5-fpm php5-memcache memcached nginx php5-mysql php5-gd \
 	fp-compiler openjdk-7-jdk \
 	&& rm -rf /var/lib/apt/lists/* 
 	
 RUN \
 	echo 'mysql-server-5.5 mysql-server/root_password password ""' | sudo debconf-set-selections \
 	&& echo 'mysql-server-5.5 mysql-server/root_password_again password ""' | sudo debconf-set-selections \
-	&& apt-get update && apt-get upgrade && apt-get install -y mysql-server \
+	&& apt-get update && apt-get upgrade -y && apt-get install -y mysql-server \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& /usr/sbin/useradd -m -u 1536 judge 
 
