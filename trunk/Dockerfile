@@ -1,7 +1,7 @@
-FROM ubuntu:trusty-20171117
-
+#FROM ubuntu:trusty-20171117
 #COPY ./docker/hustoj/sources.list /etc/apt/sources.list
-	
+FROM debian:jessie-slim
+
 RUN apt-get update && apt-get upgrade -y && apt-get install -y make flex g++ clang libmysqlclient-dev libmysql++-dev php5-fpm php5-memcache memcached nginx php5-mysql php5-gd \
 	fp-compiler openjdk-7-jdk \
 	&& rm -rf /var/lib/apt/lists/* 
