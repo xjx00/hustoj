@@ -8,8 +8,8 @@ RUN set -ex \
 	&& rm -rf /var/lib/apt/lists/* 
 	
 RUN set -ex \
-	&& echo 'mysql-server-5.5 mysql-server/root_password password ""' | sudo debconf-set-selections \
-	&& echo 'mysql-server-5.5 mysql-server/root_password_again password ""' | sudo debconf-set-selections \
+	&& echo 'mysql-server-5.5 mysql-server/root_password password ""' | debconf-set-selections \
+	&& echo 'mysql-server-5.5 mysql-server/root_password_again password ""' | debconf-set-selections \
 	&& apt-get update && apt-get install -y mysql-server \
 	&& rm -rf /var/lib/apt/lists/*
 	
