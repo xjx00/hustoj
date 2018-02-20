@@ -3,7 +3,7 @@
 FROM debian:jessie-slim
 
 RUN set -ex \
-	&& apt-get update && apt-get install -y make flex g++ clang libmysqlclient-dev libmysql++-dev php5-fpm php5-memcache memcached nginx php5-mysql php5-gd \
+	&& apt-get update && apt-get install -y git make flex g++ clang libmysqlclient-dev libmysql++-dev php5-fpm php5-memcache memcached nginx php5-mysql php5-gd \
 	fp-compiler \
 	&& rm -rf /var/lib/apt/lists/* 
 	
