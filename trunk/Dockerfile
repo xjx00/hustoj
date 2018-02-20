@@ -3,7 +3,7 @@
 FROM debian:jessie-slim
 
 RUN apt-get update && apt-get install -y make flex g++ clang libmysqlclient-dev libmysql++-dev php5-fpm php5-memcache memcached nginx php5-mysql php5-gd \
-	fp-compiler openjdk-7-jdk \
+	fp-compiler \
 	&& rm -rf /var/lib/apt/lists/* 
 	
 RUN \
