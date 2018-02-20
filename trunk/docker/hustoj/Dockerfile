@@ -18,7 +18,6 @@ RUN set -ex \
 	&& cd / && git clone https://github.com/zhblue/hustoj.git \	
 	&& mv /hustoj/trunk /home/judge/src \
 	&& rm -R /hustoj \
-	
 	&& USER=`cat /etc/mysql/debian.cnf |grep user|head -1|awk  '{print $3}'` \
 	&& PASSWORD=`cat /etc/mysql/debian.cnf |grep password|head -1|awk  '{print $3}'` \
 	&& CPU=`grep "cpu cores" /proc/cpuinfo |head -1|awk '{print $4}'`   \	
@@ -44,8 +43,11 @@ RUN set -ex \
 	&& sed -i "s:#\tfastcgi_index:\tfastcgi_index:g" /etc/nginx/sites-enabled/default   \
 	&& sed -i "s:#\tinclude fastcgi_params;:\tinclude fastcgi_params;\n\t}:g" /etc/nginx/sites-enabled/default   \
 	&& sed -i "s/post_max_size = 8M/post_max_size = 80M/g" /etc/php5/fpm/php.ini     \
-	&& sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 80M/g" /etc/php5/fpm/php.ini   \
+	&& sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 80M/g" /etc/php5/fpm/php.ini   
 
+COPY ./docker-entrypoint.sh /usr/local/bin/
+
+RUN set -ex \
 	&& cd /home/judge/src/core/judged \
     && make \
     && chmod +x judged \
@@ -53,18 +55,16 @@ RUN set -ex \
     && cd ../judge_client \
     && make \
     && chmod +x judge_client \
-    && cp judge_client /usr/bin 
-
-WORKDIR /home/judge/
-EXPOSE 80
-VOLUME ["/home/judge/data","/home/judge/src/web/upload","/var/lib/mysql"]
-
-COPY ./docker-entrypoint.sh /usr/local/bin/
-RUN  set -ex \
+    && cp judge_client /usr/bin \
+	&& cd /home/judge/ \
 	&& chmod +x /usr/local/bin/docker-entrypoint.sh \
 	&& cp -R /var/lib/mysql/ /home/ \
 	&& cp -R /home/judge/src/web/config/ /home/  \
 	&& cp /home/judge/etc/judge.conf /home/config/judge.conf
+	
+WORKDIR /home/judge/
+EXPOSE 80
+VOLUME ["/home/judge/data","/home/judge/src/web/upload","/var/lib/mysql"]
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 
