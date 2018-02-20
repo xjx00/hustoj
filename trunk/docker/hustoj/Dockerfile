@@ -67,4 +67,4 @@ EXPOSE 80
 VOLUME ["/home/judge/data","/home/judge/src/web/upload","/var/lib/mysql"]
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
-
+#CMD judged /home/judge debug && tail -f /dev/null
