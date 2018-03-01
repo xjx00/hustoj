@@ -39,7 +39,7 @@ mount --bind $DIRECTORY /var/lib/mysql
 
 service mysql start
 /usr/bin/judged
-php5-fpm
+service php7.0-fpm start
 service nginx start
 
 /bin/bash  
