@@ -65,13 +65,13 @@ RUN set -ex \
 	&& chown www-data src/web/upload data   \
 
 #nginx
-	&& sed -i "s:root /var/www/html;:root /home/judge/src/web;:g" /etc/nginx/sites-enabled/default
-	&& sed -i "s:index index.html:index index.php:g" /etc/nginx/sites-enabled/default
-	&& sed -i "s:#location ~ \\\.php\\$:location ~ \\\.php\\$:g" /etc/nginx/sites-enabled/default
-	&& sed -i "s:#\tinclude snippets:\tinclude snippets:g" /etc/nginx/sites-enabled/default
-	&& sed -i "s|#\tfastcgi_pass unix|\tfastcgi_pass unix|g" /etc/nginx/sites-enabled/default
-	&& sed -i "s:}#added_by_hustoj::g" /etc/nginx/sites-enabled/default
-	&& sed -i "s|# deny access to .htaccess files|}#added by hustoj\n\n\n\t# deny access to .htaccess files|g" /etc/nginx/sites-enabled/default
+	&& sed -i "s:root /var/www/html;:root /home/judge/src/web;:g" /etc/nginx/sites-enabled/default      \
+	&& sed -i "s:index index.html:index index.php:g" /etc/nginx/sites-enabled/default   \
+	&& sed -i "s:#location ~ \\\.php\\$:location ~ \\\.php\\$:g" /etc/nginx/sites-enabled/default   \
+	&& sed -i "s:#\tinclude snippets:\tinclude snippets:g" /etc/nginx/sites-enabled/default   \
+	&& sed -i "s|#\tfastcgi_pass unix|\tfastcgi_pass unix|g" /etc/nginx/sites-enabled/default   \
+	&& sed -i "s:}#added_by_hustoj::g" /etc/nginx/sites-enabled/default   \
+	&& sed -i "s|# deny access to .htaccess files|}#added by hustoj\n\n\n\t# deny access to .htaccess files|g" /etc/nginx/sites-enabled/default   \
 	
 # judged
 	&& cd /home/judge/src/core/judged \
