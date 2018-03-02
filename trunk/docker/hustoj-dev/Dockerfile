@@ -1,5 +1,5 @@
 FROM daocloud.io/library/ubuntu:xenial
-#COPY ./sources.list /etc/apt/sources.list 
+COPY ./sources.list /etc/apt/sources.list 
 
 #FROM debian:jessie-slim
 #COPY ./sources.debian.list /etc/apt/sources.list
@@ -64,6 +64,15 @@ RUN set -ex \
 	&& sed -i "s/DB_PASS=\"root\"/DB_PASS=\"$PASSWORD\"/g" src/web/config/system.conf.php   \
 	&& chown www-data src/web/upload data   \
 
+#nginx
+	&& sed -i "s:root /var/www/html;:root /home/judge/src/web;:g" /etc/nginx/sites-enabled/default
+	&& sed -i "s:index index.html:index index.php:g" /etc/nginx/sites-enabled/default
+	&& sed -i "s:#location ~ \\\.php\\$:location ~ \\\.php\\$:g" /etc/nginx/sites-enabled/default
+	&& sed -i "s:#\tinclude snippets:\tinclude snippets:g" /etc/nginx/sites-enabled/default
+	&& sed -i "s|#\tfastcgi_pass unix|\tfastcgi_pass unix|g" /etc/nginx/sites-enabled/default
+	&& sed -i "s:}#added_by_hustoj::g" /etc/nginx/sites-enabled/default
+	&& sed -i "s|# deny access to .htaccess files|}#added by hustoj\n\n\n\t# deny access to .htaccess files|g" /etc/nginx/sites-enabled/default
+	
 # judged
 	&& cd /home/judge/src/core/judged \
     && make \
@@ -86,7 +95,7 @@ RUN set -ex \
 	&& chmod +x /usr/local/bin/docker-entrypoint.sh \
 	&& ln -s /usr/local/bin/docker-entrypoint.sh  /docker-entrypoint.sh
 
-COPY nginx/default.conf /etc/nginx/sites-available/default
+#COPY nginx/default.conf /etc/nginx/sites-available/default
 	
 WORKDIR /home/judge/
 EXPOSE 80
