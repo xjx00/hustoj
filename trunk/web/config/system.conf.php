@@ -29,6 +29,7 @@ OJ_BLOCKLY=1				;是否启用Blockly界面
 OJ_ENCODE_SUBMIT=0			;是否启用base64编码提交的功能，用来回避WAF防火墙误拦截。
 
 ；题库市场设置 http://tk.wxy1.cn
+OJ_MARKET_ENABLE = 0
 OJ_MARKET_HOST = "http://tk.wxy1.cn"
 OJ_MARKET_USERNAME = "hustoj";
 OJ_MARKET_PASSWORD = "e10adc3949ba59abbe56e057f20f883e"
