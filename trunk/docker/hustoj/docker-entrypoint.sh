@@ -40,6 +40,12 @@ chmod 770 -R 		/data/upload /data/config
 chgrp -R www-data 	/data/upload /data/config 
 chown -R mysql:mysql /data/mysql/
 
+if grep "OJ_MARKET_ENABLE" /data/config/system.conf.php ; then
+	echo "OJ_MARKET_ENABLE added!"
+else
+	sed -i '/；题库市场设置 http://tk.wxy1.cn/a\OJ_MARKET_ENABLE = 0' /data/config/system.conf.php
+fi
+
 service mysql start
 /usr/bin/judged
 php5-fpm
