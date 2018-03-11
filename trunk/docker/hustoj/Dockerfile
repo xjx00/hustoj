@@ -4,8 +4,6 @@
 FROM debian:jessie-slim
 #COPY ./sources.debian.list /etc/apt/sources.list
 	
-COPY ./docker-entrypoint.sh /usr/local/bin/
-
 RUN set -ex \
 	&& apt-get update \
 	&& apt-get install -y \
@@ -87,6 +85,7 @@ RUN set -ex \
 	&& ln -s /usr/local/bin/docker-entrypoint.sh  /docker-entrypoint.sh
 
 COPY nginx/default.conf /etc/nginx/sites-available/default
+COPY ./docker-entrypoint.sh /usr/local/bin/
 	
 WORKDIR /home/judge/
 EXPOSE 80
