@@ -57,7 +57,7 @@ if(market_isLogin() == "noLogin")//isLogin noLogin
     echo market_login();
 }
 //market_login();
-$data_url = $OJ_MARKET_HOST . '/problem_market_json.php?page='.$page;
+$data_url = $OJ_MARKET_HOST . '/market/problem_market_json.php?page='.$page;
 $json = http_request($data_url);
 $result = json_decode($json,true);
 if(is_null($result))
