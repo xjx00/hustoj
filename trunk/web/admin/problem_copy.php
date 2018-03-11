@@ -57,4 +57,12 @@ Copy from acm.zju.edu.cn
 </form>
 </li>
 
+<li>
+    Copy from wzoi
+    <form method=POST action=problem_add_page_wzoi.php>
+        <input name=url type=text size=100>
+        <input type=submit>
+    </form>
+</li>
+
 </ol>
