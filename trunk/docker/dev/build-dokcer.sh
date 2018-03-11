@@ -1,6 +1,5 @@
 
-docker build -f Dockerfile -t hustoj  ./
-pause
+docker build -f docker/dev/Dockerfile -t hustoj  ./
 
 #docker rm -f -v /hustoj-dev
 #docker rm -f -v /hustoj-cpp 
