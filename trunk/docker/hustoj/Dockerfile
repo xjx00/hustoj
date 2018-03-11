@@ -39,7 +39,7 @@ RUN set -ex \
 
 # code
 #RUN set -ex \
-	&& cd / && git clone -b docker-dev https://github.com/shiningrise/hustoj.git \	
+	&& cd / && git clone -b docker-ubuntu1404 https://github.com/shiningrise/hustoj.git \	
 	&& mv /hustoj/trunk /home/judge/src \
 # clear
 	&& rm -R /hustoj \
