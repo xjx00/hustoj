@@ -1,5 +1,10 @@
 <?php
 require_once(dirname(__FILE__) . "/../include/db_info.inc.php");
+if($OJ_MARKET_ENABLE == false)
+{
+    echo "noLogin";
+    exit(1);
+}
 require_once(dirname(__FILE__). "/../include/login-".$OJ_LOGIN_MOD.".php");
 $user_id=$_POST['user_id'];
 $password=$_POST['password'];

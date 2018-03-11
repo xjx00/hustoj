@@ -74,7 +74,7 @@ if (isset($_SESSION[$OJ_NAME.'_'.'administrator'])){
 ?><li>
 	<a class='btn btn-primary' href="source_give.php" target="main"><b><?php echo $MSG_GIVESOURCE?></b></a>
 <?php }
-if (isset($_SESSION[$OJ_NAME.'_'.'administrator'])){
+if (isset($_SESSION[$OJ_NAME.'_'.'administrator']) && $OJ_MARKET_ENABLE == true){
 ?><li>
 	<a class='btn btn-primary' href="problem_export.php" target="main"><b><?php echo $MSG_EXPORT.$MSG_PROBLEM?></b></a>
     <li><a class='btn btn-primary' href="../market/problem_market_index.php" target="main"><b>题库市场</b></a>
