@@ -59,8 +59,8 @@ require_once("include/set_get_key.php");
 echo "</center>";
 echo "<!--StartMarkForVirtualJudge-->";
 echo "<h2>$MSG_Description</h2><div class=content>".$row['description']."</div>";
-echo "<h2>$MSG_Input</h2><div class=content>".$row['input']."</div>";
-echo "<h2>$MSG_Output</h2><div class=content>".$row['output']."</div>";
+if(!empty($row['input'])) echo "<h2>$MSG_Input</h2><div class=content>".$row['input']."</div>";
+if(!empty($row['output'])) echo "<h2>$MSG_Output</h2><div class=content>".$row['output']."</div>";
 $sinput=str_replace("<","&lt;",$row['sample_input']);
 $sinput=str_replace(">","&gt;",$sinput);
 $soutput=str_replace("<","&lt;",$row['sample_output']);
@@ -73,9 +73,12 @@ if(strlen($soutput)){
 echo "<h2>$MSG_Sample_Output</h2>
 <pre class=content><span class=sampledata>".($soutput)."</span></pre>";
 }
-if ($pr_flag||true)
-echo "<h2>$MSG_HINT</h2>
-<div class=content><p>".nl2br($row['hint'])."</p></div>";
+if ($pr_flag && !empty($row['output']))
+{
+    echo "<h2>$MSG_HINT</h2>
+    <div class=content><p>".nl2br($row['hint'])."</p></div>";
+}
+
 if ($pr_flag){
 	echo "<h2>$MSG_Source</h2><div class=content><p>";
 	$cats=explode(" ",$row['source']);
