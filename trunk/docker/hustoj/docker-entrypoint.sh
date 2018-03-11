@@ -43,7 +43,7 @@ chown -R mysql:mysql /data/mysql/
 if grep "OJ_MARKET_ENABLE" /data/config/system.conf.php ; then
 	echo "OJ_MARKET_ENABLE added!"
 else
-	sed -i '/；题库市场设置 http://tk.wxy1.cn/a\OJ_MARKET_ENABLE = 0' /data/config/system.conf.php
+	sed -i '/OJ_MARKET_PASSWORD = "e10adc3949ba59abbe56e057f20f883e"/a\OJ_MARKET_ENABLE = 0' /data/config/system.conf.php
 fi
 
 service mysql start

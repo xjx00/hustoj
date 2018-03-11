@@ -1,8 +1,4 @@
-#FROM ubuntu:trusty-20171117
-#COPY ./sources.list /etc/apt/sources.list 
-
 FROM debian:jessie-slim
-COPY ./sources.debian.list /etc/apt/sources.list
 	
 RUN set -ex \
 	&& apt-get update \
@@ -65,14 +61,16 @@ RUN set -ex \
 # db
 	&& chown -R mysql:mysql /var/lib/mysql  \
 	&& service mysql restart \
-	&& service mysql status \
+#	&& service mysql status \
 	&& mysql -h localhost -u$USER -p$PASSWORD< /home/judge/src/install/db.sql \
-	&& echo "insert into jol.privilege values('admin','administrator','N');"|mysql -h localhost -u$USER -p$PASSWORD \
-	&& chmod +x /usr/local/bin/docker-entrypoint.sh \
-	&& ln -s /usr/local/bin/docker-entrypoint.sh  /docker-entrypoint.sh
+	&& echo "insert into jol.privilege values('admin','administrator','N');"|mysql -h localhost -u$USER -p$PASSWORD 
 
 COPY nginx/default.conf /etc/nginx/sites-available/default
 COPY ./docker-entrypoint.sh /usr/local/bin/
+
+RUN set -ex \
+	&& chmod +x /usr/local/bin/docker-entrypoint.sh \
+	&& ln -s /usr/local/bin/docker-entrypoint.sh  /docker-entrypoint.sh
 	
 WORKDIR /home/judge/
 EXPOSE 80
