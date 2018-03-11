@@ -37,7 +37,7 @@ if (isset($_GET['page'])){
 	<ul class="pagination">
 		<li class="page-item"><a href="problem_market_index.php?page=1">&lt;&lt;</a></li>
 		<?php  
-		$pagecount = intval(@file_get_contents($OJ_MARKET_HOST.'/problem_market_json.php?getPageCount=1'));
+		$pagecount = intval(@file_get_contents($OJ_MARKET_HOST.'/market/problem_market_json.php?getPageCount=1'));
 		if($pagecount == 0)$pagecount=1;
 		for ($i = 1; $i <= $pagecount; $i++) {
 		?>
