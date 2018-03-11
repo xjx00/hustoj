@@ -1,9 +1,9 @@
 <?php 
 	$OJ_CACHE_SHARE=false;
 	$cache_time=60;
-	require_once('./include/db_info.inc.php');
-	require_once('./include/cache_start.php');
-	require_once('./include/memcache.php');
+	require_once(dirname(__FILE__).'/../include/db_info.inc.php');
+	require_once(dirname(__FILE__).'/../include/cache_start.php');
+	require_once(dirname(__FILE__).'/../include/memcache.php');
     $view_title= "Problem Market";
 $first=1000;
   //if($OJ_SAE) $first=1;
