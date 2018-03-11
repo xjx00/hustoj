@@ -26,7 +26,7 @@ RUN set -ex \
 	&& sed -i "s/memory_limit = 128M/memory_limit = 256M/g" /etc/php5/fpm/php.ini   \
 	&& /usr/sbin/useradd -m -u 1536 judge \
 # code
-	&& cd / && git clone -b docker-ubuntu1404 https://github.com/shiningrise/hustoj.git \	
+	&& cd / && git clone -b docker https://github.com/shiningrise/hustoj.git \	
 	&& mv /hustoj/trunk /home/judge/src \
 # clear
 	&& rm -R /hustoj \
