@@ -1,6 +1,9 @@
 FROM debian:jessie-slim
 	
 RUN set -ex \
+	&& ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+	&& echo "Asia/Shanghai" > /etc/timezone  \
+	&& dpkg-reconfigure -f noninteractive tzdata \
 	&& apt-get update \
 	&& apt-get install -y \
 		git \
