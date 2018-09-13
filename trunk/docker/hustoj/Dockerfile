@@ -1,4 +1,4 @@
-FROM ubuntu:trusty-20171117
+FROM ubuntu:latest
 #COPY ./sources.list /etc/apt/sources.list
 #FROM debian:jessie-slim
 
